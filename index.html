@@ -89,17 +89,10 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 8%;
-background:
-linear-gradient(
-90deg,
-rgba(0,0,0,.92) 30%,
-rgba(0,0,0,.35)
-),
-url('hero.png');
-background-size:cover;
-background-position:center;
+background:#06060a;
+position:relative;
+overflow:hidden;
 }
-
 .hero-left{
 max-width:650px;
 }
@@ -145,13 +138,22 @@ transition:.3s;
 }
 
 .btn-primary{
-background:#8a2cff;
+background:linear-gradient(135deg,#b84dff,#8a2cff);
 color:white;
-box-shadow:0 0 30px rgba(138,44,255,.5);
+box-shadow:
+0 0 25px #8a2cff,
+0 0 50px rgba(138,44,255,.8);
+font-size:1.1rem;
+padding:20px 45px;
+font-weight:900;
+transition:.3s;
 }
 
 .btn-primary:hover{
-transform:translateY(-4px);
+transform:translateY(-5px) scale(1.05);
+box-shadow:
+0 0 40px #8a2cff,
+0 0 80px rgba(138,44,255,.9);
 }
 
 .btn-secondary{
@@ -431,6 +433,55 @@ transform:translateY(0);
 .logo{
 animation:float 4s infinite ease-in-out;
 }
+.logo{
+animation:float 4s infinite ease-in-out;
+}
+
+/* INCOLLA QUI */
+
+.card{
+position:relative;
+}
+
+.best-seller{
+position:absolute;
+top:20px;
+right:-45px;
+background:#8a2cff;
+color:white;
+padding:10px 60px;
+font-weight:900;
+transform:rotate(45deg);
+z-index:10;
+}
+.hero-image{
+position:absolute;
+right:0;
+top:0;
+width:50%;
+height:100%;
+pointer-events:none;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+
+-webkit-mask-image:linear-gradient(
+to left,
+black 65%,
+transparent 100%
+);
+
+mask-image:linear-gradient(
+to left,
+black 65%,
+transparent 100%
+);
+
+filter:drop-shadow(0 0 40px #8a2cff);
+}
 </style>
 </head>
 
@@ -467,7 +518,10 @@ migliorare il CTR e rendere i tuoi video immediatamente riconoscibili.
 <div class="hero-buttons">
 
 <a href="#pacchetti" class="btn btn-primary">
-🛒 ACQUISTA ORA
+<svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:8px;fill:white;">
+<path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.2 14h9.9c.8 0 1.5-.5 1.8-1.2l3.1-7.3H6.2L5.3 2H1v2h3l3.6 7.6-1.3 2.4c-.2.3-.3.6-.3 1 0 1.1.9 2 2 2h12v-2H8.4l.8-1z"/>
+</svg>
+ORDINA LA TUA MINIATURA
 </a>
 
 <a href="#portfolio" class="btn btn-secondary">
@@ -478,8 +532,11 @@ PORTFOLIO
 
 </div>
 
-</section>
+<div class="hero-image">
+    <img src="hero.png" alt="AlethumbStudio">
+</div>
 
+</section>
 <!-- Continua con pacchetti, portfolio e contatti -->
 <section id="pacchetti">
 
@@ -537,11 +594,15 @@ SCEGLI CREATOR
 
 <div class="card">
 
-<img src="premium.png" alt="Premium">
+<div class="best-seller">
+⭐ PIÙ SCELTO
+</div>
+
+<img src="creator.png" alt="Creator">
 
 <div class="card-content">
 
-<h3>PREMIUM</h3>
+<h3>CREATOR</h3>
 
 <div class="price">35€</div>
 
