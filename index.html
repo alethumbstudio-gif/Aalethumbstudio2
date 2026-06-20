@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AlethumbStudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#06060a;
+color:white;
+overflow-x:hidden;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#8a2cff;
+border-radius:20px;
+}
+
+/* Navbar */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(15px);
+z-index:999;
+}
+
+.logo{
+font-size:2rem;
+font-weight:900;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#8a2cff;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:#8a2cff;
+}
+
+/* Hero */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 8%;
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.92) 30%,
+rgba(0,0,0,.35)
+),
+url('hero.jpg');
+background-size:cover;
+background-position:center;
+}
+
+.hero-left{
+max-width:650px;
+}
+
+.hero-left h1{
+font-size:6rem;
+font-weight:900;
+line-height:1;
+margin-bottom:10px;
+}
+
+.hero-left h1 span{
+display:block;
+color:#8a2cff;
+}
+
+.hero-left h2{
+font-size:2rem;
+margin-bottom:25px;
+color:#e7e7e7;
+}
+
+.hero-left p{
+font-size:1.2rem;
+line-height:1.8;
+color:#cfcfcf;
+margin-bottom:35px;
+}
+
+.hero-buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:18px 40px;
+border-radius:14px;
+font-weight:700;
+font-size:1rem;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn-primary{
+background:#8a2cff;
+color:white;
+box-shadow:0 0 30px rgba(138,44,255,.5);
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+}
+
+.btn-secondary{
+border:2px solid #8a2cff;
+color:white;
+}
+
+.btn-secondary:hover{
+background:#8a2cff;
+}
+
+/* Section */
+
+section{
+padding:120px 8%;
+}
+
+.section-title{
+font-size:3rem;
+text-align:center;
+margin-bottom:60px;
+font-weight:900;
+}
+
+.section-title span{
+color:#8a2cff;
+}
+
+/* Cards */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.card{
+background:#11111a;
+border:1px solid rgba(138,44,255,.3);
+border-radius:25px;
+overflow:hidden;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 40px rgba(138,44,255,.3);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-content{
+padding:25px;
+}
+
+.card h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.price{
+font-size:3rem;
+font-weight:900;
+color:#8a2cff;
+margin-bottom:20px;
+}
+
+.features{
+list-style:none;
+margin-bottom:25px;
+}
+
+.features li{
+margin:12px 0;
+color:#ddd;
+}
+
+.buy-btn{
+display:block;
+width:100%;
+padding:15px;
+background:#8a2cff;
+text-align:center;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-weight:700;
+}
+
+/* Footer */
+
+footer{
+padding:60px 8%;
+border-top:1px solid rgba(255,255,255,.08);
+text-align:center;
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:25px 0;
+flex-wrap:wrap;
+}
+
+.socials a{
+padding:12px 20px;
+border:1px solid #8a2cff;
+border-radius:12px;
+color:white;
+text-decoration:none;
+}
+
+.socials a:hover{
+background:#8a2cff;
+}
+
+@media(max-width:900px){
+
+.hero{
+text-align:center;
+justify-content:center;
+}
+
+.hero-left h1{
+font-size:4rem;
+}
+
+nav ul{
+display:none;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+}
+/* GLOW BACKGROUND */
+
+body::before{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:#8a2cff;
+filter:blur(250px);
+opacity:.15;
+top:-200px;
+right:-200px;
+pointer-events:none;
+z-index:-1;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:#5a00ff;
+filter:blur(220px);
+opacity:.10;
+bottom:-250px;
+left:-200px;
+pointer-events:none;
+z-index:-1;
+}
+
+/* ANIMAZIONI */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.hero-left{
+animation:fadeUp 1s ease;
+}
+
+.card{
+animation:fadeUp .8s ease;
+}
+
+/* PREMIUM CARD */
+
+.card:nth-child(3){
+border:2px solid #8a2cff;
+box-shadow:0 0 40px rgba(138,44,255,.35);
+}
+
+.card:nth-child(3) .price{
+text-shadow:0 0 20px #8a2cff;
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+justify-content:center;
+gap:50px;
+flex-wrap:wrap;
+margin-top:80px;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:3rem;
+color:#8a2cff;
+}
+
+.stat p{
+color:#bbb;
+margin-top:10px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.review{
+background:#11111a;
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(138,44,255,.2);
+}
+
+.review h4{
+margin-bottom:15px;
+color:#8a2cff;
+}
+
+.review p{
+color:#ccc;
+line-height:1.8;
+}
+
+/* HOVER GLOW */
+
+.buy-btn:hover{
+box-shadow:0 0 30px rgba(138,44,255,.7);
+transform:translateY(-3px);
+}
+
+.socials a:hover{
+box-shadow:0 0 25px rgba(138,44,255,.5);
+}
+
+/* FLOAT EFFECT */
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+100%{
+transform:translateY(0);
+}
+}
+
+.logo{
+animation:float 4s infinite ease-in-out;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">
+ALETHUMB<span>STUDIO</span>
+</div>
+
+<ul>
+<li><a href="#pacchetti">Pacchetti</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#contatti">Contatti</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>
+MINIATURE
+<span>MINECRAFT</span>
+</h1>
+
+<h2>Professionali per YouTube</h2>
+
+<p>
+Miniature ad alto impatto progettate per aumentare i clic,
+migliorare il CTR e rendere i tuoi video immediatamente riconoscibili.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#pacchetti" class="btn btn-primary">
+ORDINA ORA
+</a>
+
+<a href="#portfolio" class="btn btn-secondary">
+PORTFOLIO
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Continua con pacchetti, portfolio e contatti -->
+<section id="pacchetti">
+
+<h2 class="section-title">
+I MIEI <span>PACCHETTI</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="basic.jpg" alt="Basic">
+
+<div class="card-content">
+
+<h3>BASIC</h3>
+
+<div class="price">5€</div>
+
+<ul class="features">
+<li>✓ 1 Miniatura Personalizzata</li>
+<li>✓ Consegna entro 48h</li>
+<li>✓ Qualità HD</li>
+</ul>
+
+<a href="#" class="buy-btn">
+SCEGLI BASIC
+</a>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="creator.jpg" alt="Creator">
+
+<div class="card-content">
+
+<h3>CREATOR</h3>
+
+<div class="price">20€</div>
+
+<ul class="features">
+<li>✓ 5 Miniature Personalizzate</li>
+<li>✓ Consegna Prioritaria</li>
+<li>✓ Effetti Premium</li>
+</ul>
+
+<a href="#" class="buy-btn">
+SCEGLI CREATOR
+</a>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="premium.jpg" alt="Premium">
+
+<div class="card-content">
+
+<h3>PREMIUM</h3>
+
+<div class="price">35€</div>
+
+<ul class="features">
+<li>✓ 10 Miniature Personalizzate</li>
+<li>✓ Revisioni Incluse</li>
+<li>✓ Priorità Massima</li>
+</ul>
+
+<a href="#" class="buy-btn">
+SCEGLI PREMIUM
+</a>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="portfolio">
+
+<h2 class="section-title">
+MIO <span>PORTFOLIO</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="thumb1.jpg">
+</div>
+
+<div class="card">
+<img src="thumb2.jpg">
+</div>
+
+<div class="card">
+<img src="thumb3.jpg">
+</div>
+
+<div class="card">
+<img src="thumb4.jpg">
+</div>
+
+<div class="card">
+<img src="thumb5.jpg">
+</div>
+
+<div class="card">
+<img src="thumb6.jpg">
+</div>
+
+</div>
+
+</section>
+
+<section id="come-funziona">
+
+<h2 class="section-title">
+COME <span>FUNZIONA</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-content">
+<h3>1️⃣ Scegli</h3>
+<p>Scegli il pacchetto più adatto a te.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>2️⃣ Paga</h3>
+<p>Completa il pagamento tramite il link.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>3️⃣ Invia</h3>
+<p>Mandami titolo, skin e dettagli.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>4️⃣ Ricevi</h3>
+<p>Ricevi le tue miniature pronte all'uso.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="contatti">
+
+<h2 class="section-title">
+CONTATTA<span>MI</span>
+</h2>
+
+<div class="socials">
+
+<a href="https://tiktok.com/@alethumbstudio" target="_blank">
+TikTok @alethumbstudio
+</a>
+
+<a href="https://instagram.com/alethumbstudio" target="_blank">
+Instagram @alethumbstudio
+</a>
+
+<a href="mailto:alethumbstudio@gmail.com">
+alethumbstudio@gmail.com
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>ALETHUMBSTUDIO</h3>
+
+<p style="margin-top:15px;color:#999;">
+Miniature Minecraft professionali per creator.
+</p>
+
+<p style="margin-top:20px;color:#666;">
+© 2026 AlethumbStudio - Tutti i diritti riservati
+</p>
+
+</footer>
+</body>
+</html>
